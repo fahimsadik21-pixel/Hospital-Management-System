@@ -122,30 +122,113 @@ Hospital-Management-System/
 - Each module renders database records in a responsive table layout.
 - Flash messages provide immediate feedback after create actions.
 
-## Screenshots
+---
 
-> Add actual screenshots to `screenshots/` and update the image paths below.
+# 📸 Application Screenshots
 
-- Dashboard
-  ![Dashboard](screenshots/dashboard.png)
-- Departments
-  ![Departments](screenshots/departments.png)
-- Doctors
-  ![Doctors](screenshots/doctors.png)
-- Patients
-  ![Patients](screenshots/patients.png)
-- Appointments
-  ![Appointments](screenshots/appointments.png)
-- Admissions
-  ![Admissions](screenshots/admissions.png)
-- Laboratory
-  ![Laboratory](screenshots/laboratory.png)
-- Pharmacy
-  ![Pharmacy](screenshots/pharmacy.png)
-- Billing
-  ![Billing](screenshots/billing.png)
-- Reports
-  ![Reports](screenshots/reports.png)
+The following screenshots showcase the key modules of the **Hospital Management System**.
+
+---
+
+## 📊 Dashboard
+
+A centralized dashboard providing quick access to all hospital management modules.
+
+<p align="center">
+  <img src="screenshots/dashboard.png" alt="Dashboard" width="100%">
+</p>
+
+---
+
+## 🏢 Department Management
+
+Manage hospital departments including department information and contact details.
+
+<p align="center">
+  <img src="screenshots/departments.png" alt="Departments" width="100%">
+</p>
+
+---
+
+## 👨‍⚕️ Doctor Management
+
+Register, update, and manage doctor profiles, specializations, consultation fees, and availability.
+
+<p align="center">
+  <img src="screenshots/doctors.png" alt="Doctors" width="100%">
+</p>
+
+---
+
+## 🧑 Patient Management
+
+Register patients and maintain complete patient records with emergency contact information.
+
+<p align="center">
+  <img src="screenshots/patients.png" alt="Patients" width="100%">
+</p>
+
+---
+
+## 📅 Appointment Scheduling
+
+Schedule appointments between patients and doctors while maintaining appointment history.
+
+<p align="center">
+  <img src="screenshots/appointments.png" alt="Appointments" width="100%">
+</p>
+
+---
+
+## 🛏️ Admission & Room Management
+
+Manage patient admissions, room allocation, admission status, and discharge records.
+
+<p align="center">
+  <img src="screenshots/admissions.png" alt="Admissions" width="100%">
+</p>
+
+---
+
+## 🧪 Laboratory Management
+
+Create laboratory reports, manage medical tests, and monitor report status.
+
+<p align="center">
+  <img src="screenshots/laboratory.png" alt="Laboratory" width="100%">
+</p>
+
+---
+
+## 💊 Pharmacy Management
+
+Maintain medicine inventory including stock quantity, expiry dates, and pricing.
+
+<p align="center">
+  <img src="screenshots/pharmacy.png" alt="Pharmacy" width="100%">
+</p>
+
+---
+
+## 💳 Billing & Payment Management
+
+Generate bills, record payments, and monitor payment status.
+
+<p align="center">
+  <img src="screenshots/billing.png" alt="Billing" width="100%">
+</p>
+
+---
+
+## 📈 Analytics & Reports
+
+Generate analytical reports and monitor hospital activities using summarized statistics.
+
+<p align="center">
+  <img src="screenshots/reports.png" alt="Reports" width="100%">
+</p>
+
+---
 
 ## Future Improvements
 
