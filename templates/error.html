@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Error | HMS{% endblock %}
+{% block page_title %}Something went wrong{% endblock %}
+{% block content %}
+<section class="panel">
+    <div class="panel-head"><h3>Database / System Error</h3></div>
+    <p>{{ message }}</p>
+</section>
+{% endblock %}

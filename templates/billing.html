@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}Billing | HMS{% endblock %}
+{% block page_title %}Billing & Payment Management{% endblock %}
+{% block content %}
+<section class="content-grid two-col">
+    <div class="panel">
+        <div class="panel-head"><h3>Create Bill</h3></div>
+        <form method="post" action="{{ url_for('add_bill') }}" class="form-grid">
+            <select name="PatientID" required><option value="">Patient</option>{% for item in patients %}<option value="{{ item.PatientID }}">{{ item.FullName }}</option>{% endfor %}</select>
+            <input name="AppointmentID" placeholder="Appointment ID (optional)">
+            <input name="AdmissionID" placeholder="Admission ID (optional)">
+            <input type="date" name="BillDate" required>
+            <input type="number" step="0.01" name="TotalAmount" placeholder="Total Amount" required>
+            <select name="BillStatus" required><option>Paid</option><option>Unpaid</option><option>Partially Paid</option></select>
+            <button class="btn-primary" type="submit">Save Bill</button>
+        </form>
+    </div>
+
+    <div class="panel">
+        <div class="panel-head"><h3>Record Payment</h3></div>
+        <form method="post" action="{{ url_for('add_payment') }}" class="form-grid">
+            <input name="BillID" placeholder="Bill ID" required>
+            <input type="number" step="0.01" name="AmountPaid" placeholder="Amount Paid" required>
+            <input type="date" name="PaymentDate" required>
+            <select name="PaymentMethod" required><option>Cash</option><option>Card</option><option>Bank Transfer</option><option>bKash</option><option>Nagad</option></select>
+            <button class="btn-primary" type="submit">Save Payment</button>
+        </form>
+    </div>
+</section>
+
+<section class="panel">
+    <div class="panel-head"><h3>Bill Register</h3></div>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Bill ID</th><th>Patient</th><th>Date</th><th>Amount</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+                {% for item in bills %}
+                <tr>
+                    <td>{{ item.BillID }}</td>
+                    <td>{{ item.patient_name }}</td>
+                    <td>{{ item.BillDate }}</td>
+                    <td>৳ {{ '%.2f'|format(item.TotalAmount) }}</td>
+                    <td><span class="status {{ item.BillStatus|lower|replace(' ', '-') }}">{{ item.BillStatus }}</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <div class="panel-head"><h3>Payment History</h3></div>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Payment ID</th><th>Patient</th><th>Bill ID</th><th>Amount</th><th>Date</th><th>Method</th></tr>
+            </thead>
+            <tbody>
+                {% for item in payments %}
+                <tr>
+                    <td>{{ item.PaymentID }}</td>
+                    <td>{{ item.patient_name }}</td>
+                    <td>{{ item.BillID }}</td>
+                    <td>৳ {{ '%.2f'|format(item.AmountPaid) }}</td>
+                    <td>{{ item.PaymentDate }}</td>
+                    <td>{{ item.PaymentMethod }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

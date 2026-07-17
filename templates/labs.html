@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Laboratory | HMS{% endblock %}
+{% block page_title %}Lab Reports & Tests{% endblock %}
+{% block content %}
+<section class="content-grid two-col">
+    <div class="panel">
+        <div class="panel-head"><h3>Create Lab Report</h3></div>
+        <form method="post" action="{{ url_for('add_lab_report') }}" class="form-grid">
+            <select name="PatientID" required><option value="">Patient</option>{% for item in patients %}<option value="{{ item.PatientID }}">{{ item.FullName }}</option>{% endfor %}</select>
+            <select name="DoctorID" required><option value="">Doctor</option>{% for item in doctors %}<option value="{{ item.DoctorID }}">{{ item.FullName }}</option>{% endfor %}</select>
+            <select name="TestID" required><option value="">Test</option>{% for item in tests %}<option value="{{ item.TestID }}">{{ item.TestName }}</option>{% endfor %}</select>
+            <input type="date" name="TestDate" required>
+            <textarea name="ResultDetails" placeholder="Result details"></textarea>
+            <select name="Status" required><option>Pending</option><option>Completed</option></select>
+            <button class="btn-primary" type="submit">Save Report</button>
+        </form>
+    </div>
+
+    <div class="panel">
+        <div class="panel-head"><h3>Available Tests</h3></div>
+        <div class="mini-list">
+            {% for test in tests %}
+            <div class="mini-item"><strong>{{ test.TestName }}</strong><span>৳ {{ '%.2f'|format(test.TestFee) }}</span></div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="panel">
+    <div class="panel-head"><h3>Lab Reports</h3></div>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>ID</th><th>Patient</th><th>Doctor</th><th>Test</th><th>Date</th><th>Status</th><th>Result</th></tr>
+            </thead>
+            <tbody>
+                {% for item in reports %}
+                <tr>
+                    <td>{{ item.ReportID }}</td>
+                    <td>{{ item.patient_name }}</td>
+                    <td>{{ item.doctor_name }}</td>
+                    <td>{{ item.TestName }}</td>
+                    <td>{{ item.TestDate }}</td>
+                    <td><span class="status {{ item.Status|lower|replace(' ', '-') }}">{{ item.Status }}</span></td>
+                    <td>{{ item.ResultDetails }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

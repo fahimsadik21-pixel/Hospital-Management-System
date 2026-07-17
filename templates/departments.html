@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Departments | HMS{% endblock %}
+{% block page_title %}Department Directory{% endblock %}
+{% block content %}
+<section class="panel">
+    <div class="panel-head"><h3>All Departments</h3></div>
+    <div class="card-grid">
+        {% for item in departments %}
+        <div class="info-card">
+            <h4>{{ item.DepartmentName }}</h4>
+            <p>Floor: {{ item.FloorNumber }}</p>
+            <p>Contact: {{ item.ContactNumber }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

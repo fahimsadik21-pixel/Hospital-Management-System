@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Reports | HMS{% endblock %}
+{% block page_title %}Analytics & Reports{% endblock %}
+{% block content %}
+<section class="stats-grid four-col">
+    <div class="stat-card"><span>Paid Bills</span><h3>{{ summary.paid_bills }}</h3></div>
+    <div class="stat-card"><span>Unpaid Bills</span><h3>{{ summary.unpaid_bills }}</h3></div>
+    <div class="stat-card"><span>Pending Lab Reports</span><h3>{{ summary.pending_labs }}</h3></div>
+    <div class="stat-card"><span>Available Doctors</span><h3>{{ summary.available_doctors }}</h3></div>
+</section>
+
+<section class="panel">
+    <div class="panel-head"><h3>Doctor Consultation Value</h3></div>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Doctor</th><th>Total Appointments</th><th>Estimated Consultation Value</th></tr>
+            </thead>
+            <tbody>
+                {% for item in doctor_revenue %}
+                <tr>
+                    <td>{{ item.FullName }}</td>
+                    <td>{{ item.total_appointments }}</td>
+                    <td>৳ {{ '%.2f'|format(item.estimated_consultation_value or 0) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

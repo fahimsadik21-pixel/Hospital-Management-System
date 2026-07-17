@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Admissions | HMS{% endblock %}
+{% block page_title %}Admission & Room Management{% endblock %}
+{% block content %}
+<section class="content-grid two-col">
+    <div class="panel">
+        <div class="panel-head"><h3>New Admission</h3></div>
+        <form method="post" action="{{ url_for('add_admission') }}" class="form-grid">
+            <select name="PatientID" required><option value="">Patient</option>{% for item in patients %}<option value="{{ item.PatientID }}">{{ item.FullName }}</option>{% endfor %}</select>
+            <select name="DoctorID" required><option value="">Doctor</option>{% for item in doctors %}<option value="{{ item.DoctorID }}">{{ item.FullName }}</option>{% endfor %}</select>
+            <select name="RoomID" required><option value="">Room</option>{% for item in rooms %}<option value="{{ item.RoomID }}">{{ item.RoomNumber }} - {{ item.AvailabilityStatus }}</option>{% endfor %}</select>
+            <input type="date" name="AdmissionDate" required>
+            <input type="date" name="DischargeDate">
+            <input name="AdmissionReason" placeholder="Admission Reason" required>
+            <select name="Status" required><option>Admitted</option><option>Discharged</option></select>
+            <button class="btn-primary" type="submit">Save Admission</button>
+        </form>
+    </div>
+
+    <div class="panel">
+        <div class="panel-head"><h3>Room Snapshot</h3></div>
+        <div class="mini-list">
+            {% for item in rooms %}
+            <div class="mini-item">
+                <strong>{{ item.RoomNumber }}</strong>
+                <span class="status {{ item.AvailabilityStatus|lower|replace(' ', '-') }}">{{ item.AvailabilityStatus }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="panel">
+    <div class="panel-head"><h3>Admission Records</h3></div>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>ID</th><th>Patient</th><th>Doctor</th><th>Room</th><th>Admission Date</th><th>Discharge Date</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+                {% for item in admissions %}
+                <tr>
+                    <td>{{ item.AdmissionID }}</td>
+                    <td>{{ item.patient_name }}</td>
+                    <td>{{ item.doctor_name }}</td>
+                    <td>{{ item.RoomNumber }}</td>
+                    <td>{{ item.AdmissionDate }}</td>
+                    <td>{{ item.DischargeDate or '-' }}</td>
+                    <td><span class="status {{ item.Status|lower|replace(' ', '-') }}">{{ item.Status }}</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,20 @@
+{
+  "app_name": "Medisphere Hospital Management System",
+  "version": "1.0.0",
+  "database": {
+    "host": "localhost",
+    "user": "root",
+    "password": "",
+    "database": "HospitalManagementSystem"
+  },
+  "features": [
+    "Dashboard analytics",
+    "Doctor management",
+    "Patient registration",
+    "Appointment scheduling",
+    "Admission and room management",
+    "Lab reports",
+    "Pharmacy inventory",
+    "Billing and payments"
+  ]
+}

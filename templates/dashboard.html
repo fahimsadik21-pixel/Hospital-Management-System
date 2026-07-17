@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard | HMS{% endblock %}
+{% block page_title %}Dashboard Overview{% endblock %}
+{% block content %}
+<section class="stats-grid">
+    <div class="stat-card"><span>Total Patients</span><h3>{{ stats.patients }}</h3></div>
+    <div class="stat-card"><span>Total Doctors</span><h3>{{ stats.doctors }}</h3></div>
+    <div class="stat-card"><span>Appointments</span><h3>{{ stats.appointments }}</h3></div>
+    <div class="stat-card"><span>Currently Admitted</span><h3>{{ stats.admitted }}</h3></div>
+    <div class="stat-card"><span>Rooms Available</span><h3>{{ stats.rooms_available }}</h3></div>
+    <div class="stat-card"><span>Total Revenue</span><h3>৳ {{ '%.2f'|format(stats.revenue or 0) }}</h3></div>
+</section>
+
+<section class="content-grid two-col">
+    <div class="panel">
+        <div class="panel-head"><h3>Recent Appointments</h3></div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr><th>ID</th><th>Patient</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                    {% for item in recent_appointments %}
+                    <tr>
+                        <td>{{ item.AppointmentID }}</td>
+                        <td>{{ item.patient_name }}</td>
+                        <td>{{ item.doctor_name }}</td>
+                        <td>{{ item.AppointmentDate }}</td>
+                        <td>{{ item.AppointmentTime }}</td>
+                        <td><span class="status {{ item.Status|lower|replace(' ', '-') }}">{{ item.Status }}</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-head"><h3>Department Doctor Count</h3></div>
+        <div class="mini-list">
+            {% for item in department_load %}
+            <div class="mini-item">
+                <strong>{{ item.DepartmentName }}</strong>
+                <span>{{ item.total_doctors }} doctors</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="panel">
+    <div class="panel-head"><h3>Recent Bills</h3></div>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Bill ID</th><th>Patient</th><th>Date</th><th>Amount</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+                {% for bill in recent_bills %}
+                <tr>
+                    <td>{{ bill.BillID }}</td>
+                    <td>{{ bill.patient_name }}</td>
+                    <td>{{ bill.BillDate }}</td>
+                    <td>৳ {{ '%.2f'|format(bill.TotalAmount) }}</td>
+                    <td><span class="status {{ bill.BillStatus|lower|replace(' ', '-') }}">{{ bill.BillStatus }}</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}
